@@ -36,7 +36,7 @@ derepR <- derepFastq(filtRs[[sample.names]])
 ddR <- dada(derepR, err=errR, multithread=TRUE)
   
 merger <- mergePairs(ddF, derepF, ddR, derepR)
-mergers[[sam]] <- merger
+mergers[[sample.names]] <- merger
 
 
 rm(derepF); rm(derepR)

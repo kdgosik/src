@@ -28,13 +28,13 @@ write.csv(out, "dada2-read-filter-log.csv", append = TRUE)
 
 
 cat("Saving Quality Plots of Raw FASTQs ... \n")
-png(paste0(gsub("_R1_001.fastq.gz", "-quality-plot.png", basename(fastqFs))))
+pdf(paste0(gsub("_R1_001.fastq.gz", "-quality-plot.pdf", basename(fastqFs))))
 plotQualityProfile(c(fastqFs, fastqRs))
 dev.off()
 
 
 cat("Saving Quality Plots of Filtered FASTQs ... \n")
-png(paste0(gsub("_R1_001_dada2_filtered.fastq.gz", "dada2-filtered-quality-plot.png", basename(filtFs))))
+pdf(paste0(gsub("_R1_001_dada2_filtered.fastq.gz", "dada2-filtered-quality-plot.pdf", basename(filtFs))))
 plotQualityProfile(c(filtFs, filtRs))
 dev.off()
 

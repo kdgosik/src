@@ -6,6 +6,8 @@ args <- commandArgs(trailingOnly = TRUE)
 fastqFs <- args[1]
 fastqRs <- args[2]
 
+sample.names <- sapply(strsplit(basename(fastqFs), "_"), `[`, 1)
+
 filter_dir <- file.path(dirname(fastqFs), "filtered")
 
 filtFs <- file.path(filter_dir, gsub(".fastq.gz", "_dada2_filtered.fastq.gz", basename(fastqFs)))
@@ -28,13 +30,13 @@ write.csv(out, "dada2-read-filter-log.csv", append = TRUE)
 
 
 cat("Saving Quality Plots of Raw FASTQs ... \n")
-pdf(paste0(gsub("_R1_001.fastq.gz", "-quality-plot.pdf", basename(fastqFs))))
+pdf(paste0(sample.names, "-quality-plot.pdf"))
 plotQualityProfile(c(fastqFs, fastqRs))
 dev.off()
 
 
 cat("Saving Quality Plots of Filtered FASTQs ... \n")
-pdf(paste0(gsub("_R1_001_dada2_filtered.fastq.gz", "dada2-filtered-quality-plot.pdf", basename(filtFs))))
+pdf(paste0(sample.names, "-dada2-filtered-quality-plot.pdf"))
 plotQualityProfile(c(filtFs, filtRs))
 dev.off()
 

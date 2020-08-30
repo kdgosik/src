@@ -6,8 +6,6 @@ args <- commandArgs(trailingOnly = TRUE)
 fastqFs <- args[1]
 fastqRs <- args[2]
 
-fastqFs <- "data/PLMB002-key_S2_L001_R1_001.fastq.gz" 
-fastqRs <- "data/PLMB002-key_S2_L001_R2_001.fastq.gz"
 
 sample.names <- sapply(strsplit(basename(fastqFs), "_"), `[`, 1)
 

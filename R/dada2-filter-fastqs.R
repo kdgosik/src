@@ -6,6 +6,9 @@ args <- commandArgs(trailingOnly = TRUE)
 fastqFs <- args[1]
 fastqRs <- args[2]
 
+fastqFs <- "data/PLMB002-key_S2_L001_R1_001.fastq.gz" 
+fastqRs <- "data/PLMB002-key_S2_L001_R2_001.fastq.gz"
+
 sample.names <- sapply(strsplit(basename(fastqFs), "_"), `[`, 1)
 
 filter_dir <- file.path(dirname(fastqFs), "filtered")
@@ -18,11 +21,11 @@ out <- filterAndTrim(fwd = fastqFs,
                      filt = filtFs, 
                      rev = fastqRs, 
                      filt.rev = filtRs,
+                     truncQ = 0,
                      truncLen = 0,
                      maxN = 0, 
-                     maxEE = c(2,2), 
-                     minQ = 10, 
-                     rm.phix = TRUE,
+                     maxEE = c(3,3), 
+                     minQ = 10,
                      compress = TRUE,
                      multithread = TRUE)
 
